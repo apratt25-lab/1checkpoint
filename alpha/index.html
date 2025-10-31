@@ -1,0 +1,95 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Wave Selector</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom font for a clean, serious look */
+        body { font-family: 'Inter', sans-serif; background-color: #f7fafc; }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4">
+
+    <div id="redirect-card" class="bg-white p-8 rounded-xl shadow-2xl max-w-lg w-full">
+        <h1 class="text-3xl font-extrabold text-gray-800 mb-4 text-center">Calendar Checkpoint: Select Survey</h1>
+        <p class="text-gray-600 mb-6 text-center">
+            As directed by your calendar handout, please select the specific survey name you are ready to begin.
+        </p>
+
+        <form id="waveForm">
+            <label for="waveSelector" class="block text-sm font-medium text-gray-700 mb-2">
+                Which survey does your calendar indicate you should take now?
+            </label>
+            <select id="waveSelector" required
+                    class="mt-1 block w-full pl-3 pr-10 py-3 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-lg rounded-lg shadow-sm transition duration-150 ease-in-out">
+                <option value="" disabled selected>Select a Survey Name</option>
+                <!-- Options will be populated by JavaScript below -->
+            </select>
+
+            <button type="submit"
+                    class="w-full mt-8 flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-md text-lg font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-150 ease-in-out">
+                Find My Prolific Study &rarr;
+            </button>
+        </form>
+
+        <p id="error-message" class="text-red-600 mt-4 text-sm text-center hidden">
+            Please select a valid survey name before proceeding.
+        </p>
+    </div>
+
+    <script>
+        // --- STEP 1: DEFINE YOUR PROLIFIC STUDY NAMES AND URLs (WAVES 2-12 ONLY) ---
+        // These names are visible to the participant and should match your handout and Prolific study titles.
+        // !!! IMPORTANT: UPDATE these placeholder URLs with your actual Prolific study links !!!
+        const STUDY_CONFIGS = [
+            { name: 'Day 7 Menstrual Check-in', url: 'https://app.prolific.com/studies/65000001-wave2' }, // Was Wave 2
+            { name: 'End of Week 2 Review', url: 'https://app.prolific.com/studies/65000002-wave3' },       // Was Wave 3
+            { name: 'Phase I Weekly Report', url: 'https://app.prolific.com/studies/65000003-wave4' },       // Was Wave 4
+            { name: 'Phase II Weekly Report', url: 'https://app.prolific.com/studies/65000004-wave5' },      // Was Wave 5
+            { name: 'Phase III Weekly Report', url: 'https://app.prolific.com/studies/65000005-wave6' },     // Was Wave 6
+            { name: 'Mid-Study Status Check', url: 'https://app.prolific.com/studies/65000006-wave7' },       // Was Wave 7
+            { name: 'Monthly Checkpoint Alpha', url: 'https://app.prolific.com/studies/65000007-wave8' },     // Was Wave 8
+            { name: 'Monthly Checkpoint Beta', url: 'https://app.prolific.com/studies/65000008-wave9' },      // Was Wave 9
+            { name: 'Pre-Final Assessment', url: 'https://app.prolific.com/studies/65000009-wave10' },      // Was Wave 10
+            { name: 'Final Month Status', url: 'https://app.prolific.com/studies/65000010-wave11' },         // Was Wave 11
+            { name: 'Completion Bonus Survey', url: 'https://app.prolific.com/studies/65000011-wave12-bonus' } // Was Wave 12 (Bonus)
+        ];
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const selector = document.getElementById('waveSelector');
+
+            // Populate the dropdown with custom names (11 items total)
+            STUDY_CONFIGS.forEach((config, index) => {
+                const option = document.createElement('option');
+                // The value starts at 1 and goes up to 11, used to index the array (0-10)
+                option.value = index + 1; 
+                option.textContent = config.name;
+                selector.appendChild(option);
+            });
+
+            document.getElementById('waveForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                const waveNumber = parseInt(selector.value);
+                const errorMessage = document.getElementById('error-message');
+                
+                if (waveNumber >= 1 && waveNumber <= STUDY_CONFIGS.length) {
+                    errorMessage.classList.add('hidden');
+                    
+                    // Get the URL based on the index (e.g., waveNumber 1 = index 0)
+                    const targetUrl = STUDY_CONFIGS[waveNumber - 1].url;
+                    
+                    // Redirect the participant to the correct Prolific study page
+                    window.location.href = targetUrl;
+
+                    // REMINDER: The participant MUST then click "Start Study" on the Prolific page.
+                } else {
+                    errorMessage.classList.remove('hidden');
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
