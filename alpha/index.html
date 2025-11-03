@@ -14,12 +14,12 @@
     <div id="redirect-card" class="bg-white p-8 rounded-xl shadow-2xl max-w-lg w-full">
         <h1 class="text-3xl font-extrabold text-gray-800 mb-4 text-center">Menstrual Awareness & Symptomology Checkpoint: Select Survey</h1>
         <p class="text-gray-600 mb-6 text-center">
-            As directed by your calendar handout, please select the specific survey name you are ready to begin.
+            As instructed by your study handout, please select the specific survey you are ready to begin.
         </p>
 
         <form id="waveForm">
             <label for="waveSelector" class="block text-sm font-medium text-gray-700 mb-2">
-                Which survey does your calendar indicate you should take now?
+                Which survey does your handout indicate you should take now?
             </label>
             <select id="waveSelector" required
                     class="mt-1 block w-full pl-3 pr-10 py-3 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-lg rounded-lg shadow-sm transition duration-150 ease-in-out">
@@ -43,17 +43,17 @@
         // These names are visible to the participant and should match your handout and Prolific study titles.
         // !!! IMPORTANT: UPDATE these placeholder URLs with your actual Prolific study links !!!
         const STUDY_CONFIGS = [
-            { name: 'Day 7 Menstrual Check-in', url: 'https://app.prolific.com/studies/65000001-wave2' }, // Was Wave 2
-            { name: 'End of Week 2 Review', url: 'https://app.prolific.com/studies/65000002-wave3' },       // Was Wave 3
-            { name: 'Phase I Weekly Report', url: 'https://app.prolific.com/studies/65000003-wave4' },       // Was Wave 4
-            { name: 'Phase II Weekly Report', url: 'https://app.prolific.com/studies/65000004-wave5' },      // Was Wave 5
-            { name: 'Phase III Weekly Report', url: 'https://app.prolific.com/studies/65000005-wave6' },     // Was Wave 6
-            { name: 'Mid-Study Status Check', url: 'https://app.prolific.com/studies/65000006-wave7' },       // Was Wave 7
-            { name: 'Monthly Checkpoint Alpha', url: 'https://app.prolific.com/studies/65000007-wave8' },     // Was Wave 8
-            { name: 'Monthly Checkpoint Beta', url: 'https://app.prolific.com/studies/65000008-wave9' },      // Was Wave 9
-            { name: 'Pre-Final Assessment', url: 'https://app.prolific.com/studies/65000009-wave10' },      // Was Wave 10
-            { name: 'Final Month Status', url: 'https://app.prolific.com/studies/65000010-wave11' },         // Was Wave 11
-            { name: 'Completion Bonus Survey', url: 'https://app.prolific.com/studies/65000011-wave12-bonus' } // Was Wave 12 (Bonus)
+            { name: 'Pre-Survey', url: 'https://app.prolific.com/studies/65000001-wave2' }, // Was Wave 2
+            { name: 'Tracking Survey 1', url: 'https://app.prolific.com/studies/65000002-wave3' },       // Was Wave 3
+            { name: 'Periovulatory 1 Symptom Report', url: 'https://app.prolific.com/studies/65000003-wave4' },       // Was Wave 4
+            { name: 'Mid Luteal 1 Symptom Report', url: 'https://app.prolific.com/studies/65000004-wave5' },      // Was Wave 5
+            { name: 'Perimenstrual 1 Symptom Report', url: 'https://app.prolific.com/studies/65000005-wave6' },     // Was Wave 6
+            { name: 'Tracking Survey 2', url: 'https://app.prolific.com/studies/65000006-wave7' },       // Was Wave 7
+            { name: 'Periovulatory 2 Symptom Report', url: 'https://app.prolific.com/studies/65000007-wave8' },     // Was Wave 8
+            { name: 'Mid Luteal 2 Symptom Report', url: 'https://app.prolific.com/studies/65000008-wave9' },      // Was Wave 9
+            { name: 'Perimenstrual 1 Symptom Report', url: 'https://app.prolific.com/studies/65000009-wave10' },      // Was Wave 10
+            { name: 'Tracking Survey 3', url: 'https://app.prolific.com/studies/65000010-wave11' },         // Was Wave 11
+            { name: 'Post-Survey', url: 'https://app.prolific.com/studies/65000011-wave12-bonus' } // Was Wave 12 (Bonus)
         ];
 
         document.addEventListener('DOMContentLoaded', function() {
